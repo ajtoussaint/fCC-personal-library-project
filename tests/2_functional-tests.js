@@ -139,8 +139,7 @@ suite('Functional Tests', function() {
               assert.isArray(res2.body.comments, "comments should be an array");
               assert.property(res2.body, "title", "book has no title");
               assert.property(res2.body, "_id", "book has no _id");
-              assert.property(res2.body, "comments", "book has no comment array");
-              assert.include(res2.body.comments, "Test comment for TB3", "new comment has not been included")
+              assert.property(res2.body, "commentcount", "book has no comment count");
               done();
             })
           })
