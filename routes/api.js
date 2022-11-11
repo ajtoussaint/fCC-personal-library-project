@@ -84,6 +84,7 @@ module.exports = function (app) {
           console.log("book not found");
           res.json("no book exists");
         }else{
+          res.json({
             title: data.title,
             _id: data._id,
             comments: data.comments
@@ -95,8 +96,6 @@ module.exports = function (app) {
     .post(function(req, res){
       let bookid = req.params.id;
       let comment = req.body.comment;
-      console.log("ID: ", bookid);
-      console.log("comment: ", comment);
       //json res format same as .get
       if(!comment){
         res.json("missing required field comment");
@@ -107,8 +106,6 @@ module.exports = function (app) {
           if(!data){
             res.json("no book exists");
           }else{
-            console.log(data);
-            console.log(data.comments);
             data.comments.push(comment);
             data.save((err, updatedData) => {
               res.json({
