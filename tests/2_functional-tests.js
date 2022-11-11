@@ -79,8 +79,8 @@ suite('Functional Tests', function() {
               assert.property(book, "title", "a book has no title");
               assert.property(book, "_id", "a book has no _id");
               assert.property(book, "commentcount", "a book has no comment count");
-              done();
             })
+            done();
           })
       });
 
