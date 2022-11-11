@@ -90,7 +90,7 @@ suite('Functional Tests', function() {
     suite('GET /api/books/[id] => book object with [id]', function(){
 
       test('Test GET /api/books/[id] with id not in db',  function(done){
-        let badId = "a6g4sdf6g1111146gsd4f6"
+        let badId = "536e3f638c7c94d8f490aca3"
         chai.request(server)
           .get('/api/books/'+badId)
           .end((err, res) =>{
@@ -163,7 +163,7 @@ suite('Functional Tests', function() {
       });
 
       test('Test POST /api/books/[id] with comment, id not in db', function(done){
-        let badId = "a6g4sdf6g1111146gsd4f6"
+        let badId = "536e3f638c7c94d8f490aca3"
         chai.request(server)
         .post("/api/books/" + badId)
         .send({comment: "test comment for badId"})
@@ -196,7 +196,7 @@ suite('Functional Tests', function() {
       });
 
       test('Test DELETE /api/books/[id] with  id not in db', function(done){
-        let badId = "a6g4sdf6g1111146gsd4f6"
+        let badId = "536e3f638c7c94d8f490aca3"
         chai.request(server)
         .delete("/api/books/" + badId)
         .end((err, res) =>{

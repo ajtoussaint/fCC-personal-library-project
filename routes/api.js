@@ -45,7 +45,7 @@ module.exports = function (app) {
       let title = req.body.title;
       //response will contain new book object including atleast _id and title
       if(!title){
-        res.send("missing required field title");
+        res.json("missing required field title");
       }else{
         let newBook = new Book({
           title: title,
@@ -68,7 +68,7 @@ module.exports = function (app) {
           Book.deleteOne({_id:book._id}, (err, data) => {
           })
         });
-        res.send("complete delete successful");
+        res.json("complete delete successful");
       })
     });
 
@@ -78,14 +78,12 @@ module.exports = function (app) {
     .get(function (req, res){
       let bookid = req.params.id;
       //json res format: {"_id": bookid, "title": book_title, "comments": [comment,comment,...]}
-      Book.find({_id:bookid}, (err,data) => {
+      Book.findById(bookid, (err,data) => {
         if(err){console.log(err)}
         if(!data){
           console.log("book not found");
-          res.send("no book exists");
+          res.json("no book exists");
         }else{
-          console.log("DATA: ", data);
-          res.json({
             title: data.title,
             _id: data._id,
             comments: data.comments
@@ -101,13 +99,13 @@ module.exports = function (app) {
       console.log("comment: ", comment);
       //json res format same as .get
       if(!comment){
-        res.send("missing required field comment");
+        res.json("missing required field comment");
       }else{
         Book.findById(bookid, (err,data) => {
           console.log("found book");
           if(err){console.log(err)}
           if(!data){
-            res.send("no book exists");
+            res.json("no book exists");
           }else{
             console.log(data);
             console.log(data.comments);
@@ -130,12 +128,12 @@ module.exports = function (app) {
       Book.findById(bookid, (err,data) => {
         if(err){console.log(err)}
         if(!data){
-          res.send("no book exists");
+          res.json("no book exists");
         }else{
           Book.deleteOne({_id:bookid}, (err, data) => {
             if(err){console.log(err)}
             if(data){
-              res.send("delete successful");
+              res.json("delete successful");
             }
           })
         }
